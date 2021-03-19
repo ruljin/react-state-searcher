@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Fuse from "fuse.js";
 import states from "../states.json";
 import classnames from "classnames";
+import StatePage from "./StatePage";
 
 const options = { keys: ["state", "code"] };
 const fuse = new Fuse(states, options);
@@ -10,8 +11,9 @@ const App = () => {
   const [query, setQuery] = useState("");
   const [resultsList, setResultsList] = useState([]);
   const [selected, setSelected] = useState(0);
+  const [picked, setPicked] = useState(null);
 
-  const onSelect = (event) => {
+  const onKeyUp = (event) => {
     const { key } = event;
     if (key === "ArrowUp") {
       const newSelected = selected - 1;
@@ -25,12 +27,19 @@ const App = () => {
         return;
       }
       setSelected(newSelected);
+    } else if (key === "Enter") {
+      setPicked(selected);
     }
   };
 
   useEffect(() => {
     setResultsList(fuse.search(query).slice(0, 6));
   }, [query]);
+
+  if (picked !== null) {
+    const currentState = resultsList[picked];
+    return <StatePage state={currentState} />;
+  }
 
   return (
     <div className="dropdown is-active">
@@ -41,7 +50,7 @@ const App = () => {
           placeholder="Search..."
           value={query}
           onChange={({ target }) => setQuery(target.value)}
-          onKeyUp={onSelect}
+          onKeyUp={onKeyUp}
         />
       </div>
       <div className="dropdown-menu" id="dropdown-menu" role="menu">
