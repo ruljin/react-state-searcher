@@ -38,34 +38,40 @@ const App = () => {
 
   if (picked !== null) {
     const currentState = resultsList[picked];
-    return <StatePage state={currentState} />;
+    return (
+      <div className="app">
+        <StatePage state={currentState.item} onBack={() => setPicked(null)} />
+      </div>
+    );
   }
 
   return (
-    <div className="dropdown is-active">
-      <div className="dropdown-trigger">
-        <input
-          className="input"
-          type="text"
-          placeholder="Search..."
-          value={query}
-          onChange={({ target }) => setQuery(target.value)}
-          onKeyUp={onKeyUp}
-        />
-      </div>
-      <div className="dropdown-menu" id="dropdown-menu" role="menu">
-        <div className="dropdown-content">
-          {resultsList.map(({ item: { state, code } }, index) => (
-            <a
-              key={code}
-              className={classnames("dropdown-item", {
-                "is-active": selected === index,
-              })}
-              onMouseEnter={() => setSelected(index)}
-            >
-              {state}
-            </a>
-          ))}
+    <div className="app">
+      <div className="dropdown is-active">
+        <div className="dropdown-trigger">
+          <input
+            className="input"
+            type="text"
+            placeholder="Search..."
+            value={query}
+            onChange={({ target }) => setQuery(target.value)}
+            onKeyUp={onKeyUp}
+          />
+        </div>
+        <div className="dropdown-menu" id="dropdown-menu" role="menu">
+          <div className="dropdown-content">
+            {resultsList.map(({ item: { state, code } }, index) => (
+              <a
+                key={code}
+                className={classnames("dropdown-item", {
+                  "is-active": selected === index,
+                })}
+                onMouseEnter={() => setSelected(index)}
+              >
+                {state}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </div>
