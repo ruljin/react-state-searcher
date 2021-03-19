@@ -58,21 +58,24 @@ const App = () => {
             onKeyUp={onKeyUp}
           />
         </div>
-        <div className="dropdown-menu" id="dropdown-menu" role="menu">
-          <div className="dropdown-content">
-            {resultsList.map(({ item: { state, code } }, index) => (
-              <a
-                key={code}
-                className={classnames("dropdown-item", {
-                  "is-active": selected === index,
-                })}
-                onMouseEnter={() => setSelected(index)}
-              >
-                {state}
-              </a>
-            ))}
+        {resultsList.length > 0 && (
+          <div className="dropdown-menu" id="dropdown-menu" role="menu">
+            <div className="dropdown-content">
+              {resultsList.map(({ item: { state, code } }, index) => (
+                <a
+                  key={code}
+                  className={classnames("dropdown-item", {
+                    "is-active": selected === index,
+                  })}
+                  onMouseEnter={() => setSelected(index)}
+                  onClick={() => setPicked(index)}
+                >
+                  {state}
+                </a>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
