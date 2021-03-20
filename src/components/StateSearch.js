@@ -1,7 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Fuse from "fuse.js";
 import states from "../states.json";
 import classnames from "classnames";
+import StatePage from "./StatePage";
+
+function useOnClickOrFocusedOutside(ref, handler) {
+  useEffect(() => {
+    const listener = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        handler(event);
+      }
+    };
+    document.addEventListener("click", listener, true);
+    document.addEventListener("focus", listener, true);
+    return () => {
+      document.removeEventListener("click", listener, true);
+      document.removeEventListener("focus", listener, true);
+    };
+  }, [ref, handler]);
+}
 
 const options = { keys: ["state", "code"] };
 const fuse = new Fuse(states, options);
@@ -11,6 +28,8 @@ const StateSearch = () => {
   const [resultsList, setResultsList] = useState([]);
   const [selected, setSelected] = useState(0);
   const [picked, setPicked] = useState(null);
+  const [focused, setFocused] = useState(false);
+  const wrapperRef = useRef(null);
 
   const onKeyUp = (event) => {
     const { key } = event;
@@ -26,7 +45,7 @@ const StateSearch = () => {
         return;
       }
       setSelected(newSelected);
-    } else if (key === "Enter") {
+    } else if (key === "Enter" && resultsList.length) {
       setPicked(selected);
     }
   };
@@ -34,6 +53,8 @@ const StateSearch = () => {
   useEffect(() => {
     setResultsList(fuse.search(query).slice(0, 6));
   }, [query]);
+
+  useOnClickOrFocusedOutside(wrapperRef, () => setFocused(false));
 
   if (picked !== null) {
     const currentState = resultsList[picked];
@@ -45,7 +66,7 @@ const StateSearch = () => {
   }
 
   return (
-    <div className="field">
+    <div className="field" ref={wrapperRef}>
       <div className="control">
         <div className="dropdown is-active">
           <div className="dropdown-trigger">
@@ -56,9 +77,10 @@ const StateSearch = () => {
               value={query}
               onChange={({ target }) => setQuery(target.value)}
               onKeyUp={onKeyUp}
+              onFocus={() => setFocused(true)}
             />
           </div>
-          {resultsList.length > 0 && (
+          {focused && resultsList.length > 0 && (
             <div className="dropdown-menu" id="dropdown-menu" role="menu">
               <div className="dropdown-content">
                 {resultsList.map(({ item: { state, code } }, index) => (
