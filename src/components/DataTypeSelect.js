@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import Select from "./Select";
 import { SearchStateContext } from "../hooks/useSearchState";
+import Select from "./Select";
 
 const DataTypeSelect = () => {
   const { setDataType, dataType } = useContext(SearchStateContext);
+
   return (
-    <Select label="Search after" onSelect={setDataType} value={dataType}>
+    <Select label="Show data" onSelect={setDataType} value={dataType}>
       <option value="table">Table</option>
       <option value="symbols">Symbols</option>
       <option value="map">Map</option>

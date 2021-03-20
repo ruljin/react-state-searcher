@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import classnames from "classnames";
-import { useOnClickOrFocusedOutside } from "../hooks/useOnClickOrFocusedOutside";
+import { useOnClickOrFocusOutside } from "../hooks/useOnClickOrFocusOutside";
 import { SearchStateContext } from "../hooks/useSearchState";
+import { getSelectedItemOnKey } from "../utils/getSelectedItemOnKey";
 
 const StateSearch = () => {
   const { query, onSetQuery, list, onPick } = useContext(SearchStateContext);
@@ -9,39 +10,33 @@ const StateSearch = () => {
   const [focused, setFocused] = useState(false);
   const wrapperRef = useRef(null);
 
+  const _onPick = (item) => {
+    onPick(item);
+    setFocused(false);
+  };
+
   const onKeyUp = (event) => {
     const { key } = event;
-    if (key === "ArrowUp") {
-      const newSelected = selected - 1;
-      if (newSelected < 0) {
-        return;
-      }
+    setFocused(true);
+
+    const newSelected = getSelectedItemOnKey(key, selected, list.length);
+    if (newSelected !== selected) {
       setSelected(newSelected);
-    } else if (key === "ArrowDown") {
-      const newSelected = selected + 1;
-      if (newSelected > resultsList.length - 1) {
-        return;
+    }
+
+    if (key === "Enter") {
+      const selectedItem = list[selected];
+      if (selectedItem) {
+        _onPick(selectedItem);
       }
-      setSelected(newSelected);
-    } else if (key === "Enter" && resultsList.length) {
-      setPicked(selected);
     }
   };
 
+  useOnClickOrFocusOutside(wrapperRef, () => setFocused(false));
+
   useEffect(() => {
-    setResultsList(fuse.search(query).slice(0, 6));
+    setSelected(0);
   }, [query]);
-
-  useOnClickOrFocusedOutside(wrapperRef, () => setFocused(false));
-
-  if (picked !== null) {
-    const currentState = resultsList[picked];
-    return (
-      <div className="app">
-        <StatePage state={currentState.item} onBack={() => setPicked(null)} />
-      </div>
-    );
-  }
 
   return (
     <div className="field" ref={wrapperRef}>
@@ -49,30 +44,34 @@ const StateSearch = () => {
         <div className="dropdown is-active">
           <div className="dropdown-trigger">
             <input
+              value={query}
+              onChange={({ target }) => onSetQuery(target.value)}
               className="input"
               type="text"
-              placeholder="Search..."
-              value={query}
-              onChange={({ target }) => setQuery(target.value)}
+              placeholder="wyszukaj..."
               onKeyUp={onKeyUp}
               onFocus={() => setFocused(true)}
             />
           </div>
-          {focused && resultsList.length > 0 && (
-            <div className="dropdown-menu" id="dropdown-menu" role="menu">
+          {focused && list.length > 0 && (
+            <div className="dropdown-menu">
               <div className="dropdown-content">
-                {resultsList.map(({ item: { state, code } }, index) => (
-                  <a
-                    key={code}
-                    className={classnames("dropdown-item", {
-                      "is-active": selected === index,
-                    })}
-                    onMouseEnter={() => setSelected(index)}
-                    onClick={() => setPicked(index)}
-                  >
-                    {state}
-                  </a>
-                ))}
+                {list.map((item, index) => {
+                  const { state } = item;
+
+                  return (
+                    <a
+                      key={state}
+                      className={classnames("dropdown-item", {
+                        "is-active": selected === index,
+                      })}
+                      onMouseEnter={() => setSelected(index)}
+                      onClick={() => _onPick(item)}
+                    >
+                      {state}
+                    </a>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -83,22 +82,3 @@ const StateSearch = () => {
 };
 
 export default StateSearch;
-
-// function useOnClickOrFocusedOutside(ref, handler) {
-//   useEffect(() => {
-//     const listener = (event) => {
-//       if (ref.current && !ref.current.contains(event.target)) {
-//         handler(event);
-//       }
-//     };
-//     document.addEventListener("click", listener, true);
-//     document.addEventListener("focus", listener, true);
-//     return () => {
-//       document.removeEventListener("click", listener, true);
-//       document.removeEventListener("focus", listener, true);
-//     };
-//   }, [ref, handler]);
-// }
-
-// const options = { keys: ["state", "code"] };
-// const fuse = new Fuse(states, options);
