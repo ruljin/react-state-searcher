@@ -48,7 +48,7 @@ const StateSearch = () => {
               onChange={({ target }) => onSetQuery(target.value)}
               className="input"
               type="text"
-              placeholder="wyszukaj..."
+              placeholder="Search..."
               onKeyUp={onKeyUp}
               onFocus={() => setFocused(true)}
             />
