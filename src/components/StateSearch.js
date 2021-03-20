@@ -1,33 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
-import Fuse from "fuse.js";
-import states from "../states.json";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import classnames from "classnames";
-import StatePage from "./StatePage";
-
-function useOnClickOrFocusedOutside(ref, handler) {
-  useEffect(() => {
-    const listener = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        handler(event);
-      }
-    };
-    document.addEventListener("click", listener, true);
-    document.addEventListener("focus", listener, true);
-    return () => {
-      document.removeEventListener("click", listener, true);
-      document.removeEventListener("focus", listener, true);
-    };
-  }, [ref, handler]);
-}
-
-const options = { keys: ["state", "code"] };
-const fuse = new Fuse(states, options);
+import { useOnClickOrFocusedOutside } from "../hooks/use-on-click-or-focused-outside";
+import { SearchStateContext } from "./App";
 
 const StateSearch = () => {
-  const [query, setQuery] = useState("");
-  const [resultsList, setResultsList] = useState([]);
+  const { query, onSetQuery, list, onPick } = useContext(SearchStateContext);
   const [selected, setSelected] = useState(0);
-  const [picked, setPicked] = useState(null);
   const [focused, setFocused] = useState(false);
   const wrapperRef = useRef(null);
 
@@ -105,3 +83,22 @@ const StateSearch = () => {
 };
 
 export default StateSearch;
+
+// function useOnClickOrFocusedOutside(ref, handler) {
+//   useEffect(() => {
+//     const listener = (event) => {
+//       if (ref.current && !ref.current.contains(event.target)) {
+//         handler(event);
+//       }
+//     };
+//     document.addEventListener("click", listener, true);
+//     document.addEventListener("focus", listener, true);
+//     return () => {
+//       document.removeEventListener("click", listener, true);
+//       document.removeEventListener("focus", listener, true);
+//     };
+//   }, [ref, handler]);
+// }
+
+// const options = { keys: ["state", "code"] };
+// const fuse = new Fuse(states, options);
