@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { SearchStateContext } from "./App";
+import { SearchStateContext } from "../hooks/useSearchState";
 
 const StatePage = () => {
   const {
-    state: {
+    currentState: {
       state,
       state_flag_url,
       state_seal_url,

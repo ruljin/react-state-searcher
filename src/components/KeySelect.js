@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Select from "./Select";
-import { SearchStateContext } from "./App";
+import { SearchStateContext } from "../hooks/useSearchState";
 
 const KeySelect = () => {
   const { setSearchKey, searchKey } = useContext(SearchStateContext);
