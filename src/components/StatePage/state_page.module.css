@@ -1,8 +1,3 @@
-.app {
-	margin: 50px auto;
-	max-width: 400px;
-}
-
 .symbols {
 	display: flex;
 	align-items: center;
@@ -20,10 +15,4 @@
 
 .map {
 	margin: 40px 0;
-}
-
-.dropdown,
-.dropdown-trigger,
-.dropdown-menu {
-	width: 100%;
 }

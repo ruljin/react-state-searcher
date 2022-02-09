@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { SearchStateContext } from '../../hooks/useSearchState';
+import styles from './state_page.module.css';
 
 export const StatePage = () => {
 	const {
@@ -22,11 +23,11 @@ export const StatePage = () => {
 			<h1 className='title is-1'>{state}</h1>
 
 			{dataType === 'symbols' && (
-				<div className='symbols'>
-					<div className='image__wrapper'>
-						<img className='flag' src={state_flag_url} />
+				<div className={styles.symbols}>
+					<div className={styles.image__wrapper}>
+						<img className={styles.map} src={state_flag_url} />
 					</div>
-					<div className='image__wrapper'>
+					<div className={styles.image__wrapper}>
 						<img src={state_seal_url} />
 					</div>
 				</div>
@@ -59,7 +60,7 @@ export const StatePage = () => {
 				</table>
 			)}
 
-			{dataType === 'map' && <img className='map' src={map_image_url} />}
+			{dataType === 'map' && <img className={styles.map} src={map_image_url} />}
 		</div>
 	);
 };

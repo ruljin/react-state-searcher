@@ -5,13 +5,14 @@ import {
 	StateSearch,
 } from '../components';
 import { useSearchState, SearchStateContext } from '../hooks/useSearchState';
+import styles from './app.module.css';
 
 const App = () => {
 	const searchState = useSearchState();
 	const { currentState } = searchState;
 
 	return (
-		<div className='app'>
+		<div className={styles.app}>
 			<SearchStateContext.Provider value={searchState}>
 				<KeySelect />
 				<StateSearch />
