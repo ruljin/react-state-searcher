@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const Select = ({ label, value, onSelect, children }) => (
 	<div className='field'>
 		<label className='label'>{label}</label>

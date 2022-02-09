@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { SearchStateContext } from '../../hooks/useSearchState';
 import { Select } from '..';
 
