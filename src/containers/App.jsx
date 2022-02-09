@@ -1,8 +1,10 @@
 import React from 'react';
-import StateSearch from '../components/StateSearch';
-import StatePage from '../components/StatePage';
-import KeySelect from '../components/KeySelect';
-import DataTypeSelect from '../components/DataTypeSelect';
+import {
+	DataTypeSelect,
+	KeySelect,
+	StatePage,
+	StateSearch,
+} from '../components';
 import { useSearchState, SearchStateContext } from '../hooks/useSearchState';
 
 const App = () => {
