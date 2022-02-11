@@ -7,6 +7,7 @@ export function useOnClickOrFocusOutside(ref, handler) {
 				handler(event);
 			}
 		};
+
 		document.addEventListener('click', listener, true);
 		document.addEventListener('focus', listener, true);
 
