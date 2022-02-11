@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { useOnClickOrFocusOutside } from '../../hooks/useOnClickOrFocusOutside';
 import { SearchStateContext } from '../../hooks/useSearchState';
 import { getSelectedItemOnKey } from '../../utils/getSelectedItemOnKey';
+import styles from './StateSearch.module.css';
 
 export const StateSearch = () => {
 	const { query, onSetQuery, list, onPick } = useContext(SearchStateContext);
@@ -41,8 +42,9 @@ export const StateSearch = () => {
 	return (
 		<div className='field' ref={wrapperRef}>
 			<div className='control'>
-				<div className='dropdown is-active'>
-					<div className='dropdown-trigger'>
+				<div
+					className={classnames(styles.full__width, 'dropdown', 'is-active')}>
+					<div className={classnames(styles.full__width, 'dropdown-trigger')}>
 						<input
 							value={query}
 							onChange={({ target }) => onSetQuery(target.value)}
@@ -54,7 +56,7 @@ export const StateSearch = () => {
 						/>
 					</div>
 					{focused && list.length > 0 && (
-						<div className='dropdown-menu'>
+						<div className={classnames(styles.full__width, 'dropdown-menu')}>
 							<div className='dropdown-content'>
 								{list.map((item, index) => {
 									const { state } = item;

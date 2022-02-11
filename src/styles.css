@@ -2,28 +2,3 @@
 	margin: 50px auto;
 	max-width: 400px;
 }
-
-.symbols {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin: 40px 0;
-}
-
-.image__wrapper {
-	max-width: 45%;
-}
-
-.flag {
-	border: 1px solid #ccc;
-}
-
-.map {
-	margin: 40px 0;
-}
-
-.dropdown,
-.dropdown-trigger,
-.dropdown-menu {
-	width: 100%;
-}
