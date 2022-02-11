@@ -1,15 +1,18 @@
 import { useContext } from 'react';
 import { SearchStateContext } from '../../hooks/useSearchState';
 import { Select } from '..';
+import { SEARCH_KEYS } from '../../constants/options';
 
 export const KeySelect = () => {
 	const { setSearchKey, searchKey } = useContext(SearchStateContext);
 
 	return (
 		<Select label='Search by' onSelect={setSearchKey} value={searchKey}>
-			<option value='state'>Name</option>
-			<option value='code'>State code</option>
-			<option value='capital_city'>Capital city</option>
+			{SEARCH_KEYS.map((key) => (
+				<option key={key.value} value={key.value}>
+					{key.option}
+				</option>
+			))}
 		</Select>
 	);
 };
