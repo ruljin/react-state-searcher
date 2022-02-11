@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { SearchStateContext } from '../../hooks/useSearchState';
-import styles from './state_page.module.css';
+import styles from './StatePage.module.css';
 
 export const StatePage = () => {
 	const {

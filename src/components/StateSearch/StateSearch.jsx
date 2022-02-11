@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { useOnClickOrFocusOutside } from '../../hooks/useOnClickOrFocusOutside';
 import { SearchStateContext } from '../../hooks/useSearchState';
 import { getSelectedItemOnKey } from '../../utils/getSelectedItemOnKey';
-import styles from './state_search.css';
+import styles from './StateSearch.module.css';
 
 export const StateSearch = () => {
 	const { query, onSetQuery, list, onPick } = useContext(SearchStateContext);
