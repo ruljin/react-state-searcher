@@ -1,10 +1,6 @@
 import { useContext } from 'react';
 import { SearchStateContext } from '../../hooks/useSearchState';
-<<<<<<< HEAD
 import styles from './state_page.module.css';
-=======
-import styles from './StatePage.module.css';
->>>>>>> main
 
 export const StatePage = () => {
 	const {
@@ -29,11 +25,7 @@ export const StatePage = () => {
 			{dataType === 'symbols' && (
 				<div className={styles.symbols}>
 					<div className={styles.image__wrapper}>
-<<<<<<< HEAD
 						<img className={styles.map} src={state_flag_url} />
-=======
-						<img className='flag' src={state_flag_url} />
->>>>>>> main
 					</div>
 					<div className={styles.image__wrapper}>
 						<img src={state_seal_url} />
