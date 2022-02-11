@@ -5,7 +5,7 @@ import {
 	StateSearch,
 } from '../components';
 import { useSearchState, SearchStateContext } from '../hooks/useSearchState';
-import styles from './app.module.css';
+import styles from './App.module.css';
 
 const App = () => {
 	const searchState = useSearchState();
