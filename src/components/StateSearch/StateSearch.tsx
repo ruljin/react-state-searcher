@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
-import classnames from 'classnames';
-import { useOnClickOrFocusOutside } from '../../hooks/useOnClickOrFocusOutside';
-import { SearchStateContext } from '../../hooks/useSearchState';
-import { getSelectedItemOnKey } from '../../utils/getSelectedItemOnKey';
-import styles from './StateSearch.module.css';
+import { useState, useEffect, useRef, useContext } from "react";
+import classnames from "classnames";
+import { useOnClickOrFocusOutside } from "../../hooks/useOnClickOrFocusOutside";
+import { SearchStateContext } from "../../hooks/useSearchState";
+import { getSelectedItemOnKey } from "../../utils/getSelectedItemOnKey";
+import styles from "./StateSearch.module.css";
 
 export const StateSearch = () => {
 	const { query, onSetQuery, list, onPick } = useContext(SearchStateContext);
@@ -11,12 +11,12 @@ export const StateSearch = () => {
 	const [focused, setFocused] = useState(false);
 	const wrapperRef = useRef(null);
 
-	const _onPick = (item) => {
+	const _onPick = (item: any) => {
 		onPick(item);
 		setFocused(false);
 	};
 
-	const onKeyUp = (event) => {
+	const onKeyUp = (event: any) => {
 		const { key } = event;
 		setFocused(true);
 
@@ -25,7 +25,7 @@ export const StateSearch = () => {
 			setSelected(newSelected);
 		}
 
-		if (key === 'Enter') {
+		if (key === "Enter") {
 			const selectedItem = list[selected];
 			if (selectedItem) {
 				_onPick(selectedItem);
@@ -40,31 +40,31 @@ export const StateSearch = () => {
 	}, [query]);
 
 	return (
-		<div className='field' ref={wrapperRef}>
-			<div className='control'>
-				<div className={`${styles.full__width} dropdown is-active`}>
-					<div className={`${styles.full__width} dropdown-trigger`}>
+		<div className="field" ref={wrapperRef}>
+			<div className="control">
+				<div className={`${styles.fullWidth} dropdown is-active`}>
+					<div className={`${styles.fullWidth} dropdown-trigger`}>
 						<input
 							value={query}
 							onChange={({ target }) => onSetQuery(target.value)}
-							className='input'
-							type='text'
-							placeholder='Search...'
+							className="input"
+							type="text"
+							placeholder="Search..."
 							onKeyUp={onKeyUp}
 							onFocus={() => setFocused(true)}
 						/>
 					</div>
 					{focused && list.length > 0 && (
-						<div className={`${styles.full__width} dropdown-menu`}>
-							<div className='dropdown-content'>
-								{list.map((item, index) => {
+						<div className={`${styles.fullWidth} dropdown-menu`}>
+							<div className="dropdown-content">
+								{list.map((item: any, index: any) => {
 									const { state } = item;
 
 									return (
 										<a
 											key={state}
-											className={classnames('dropdown-item', {
-												'is-active': selected === index,
+											className={classnames("dropdown-item", {
+												"is-active": selected === index,
 											})}
 											onMouseEnter={() => setSelected(index)}
 											onClick={() => _onPick(item)}>

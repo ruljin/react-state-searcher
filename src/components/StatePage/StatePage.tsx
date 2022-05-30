@@ -1,6 +1,6 @@
-import { useContext } from 'react';
-import { SearchStateContext } from '../../hooks/useSearchState';
-import styles from './StatePage.module.css';
+import { useContext } from "react";
+import { SearchStateContext } from "../../hooks/useSearchState";
+import styles from "./StatePage.module.css";
 
 export const StatePage = () => {
 	const {
@@ -19,22 +19,22 @@ export const StatePage = () => {
 	} = useContext(SearchStateContext);
 
 	return (
-		<div className='page__state content'>
-			<h1 className='title is-1'>{state}</h1>
+		<div className="page__state content">
+			<h1 className="title is-1">{state}</h1>
 
-			{dataType === 'symbols' && (
+			{dataType === "symbols" && (
 				<div className={styles.symbols}>
-					<div className={styles.image__wrapper}>
+					<div className={styles.imageWrapper}>
 						<img className={styles.map} src={state_flag_url} />
 					</div>
-					<div className={styles.image__wrapper}>
+					<div className={styles.imageWrapper}>
 						<img src={state_seal_url} />
 					</div>
 				</div>
 			)}
 
-			{dataType === 'table' && (
-				<table className='table is-bordered is-striped is-narrow is-hoverable is-fullwidth'>
+			{dataType === "table" && (
+				<table className="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
 					<tbody>
 						<tr>
 							<td>Admission date</td>
@@ -60,7 +60,7 @@ export const StatePage = () => {
 				</table>
 			)}
 
-			{dataType === 'map' && <img className={styles.map} src={map_image_url} />}
+			{dataType === "map" && <img className={styles.map} src={map_image_url} />}
 		</div>
 	);
 };

@@ -3,9 +3,9 @@ import {
 	KeySelect,
 	StatePage,
 	StateSearch,
-} from '../components';
-import { useSearchState, SearchStateContext } from '../hooks/useSearchState';
-import styles from './App.module.css';
+} from "../components";
+import { useSearchState, SearchStateContext } from "../hooks/useSearchState";
+import styles from "./App.module.css";
 
 const App = () => {
 	const searchState = useSearchState();
