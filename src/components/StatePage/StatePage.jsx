@@ -37,23 +37,23 @@ export const StatePage = () => {
 				<table className='table is-bordered is-striped is-narrow is-hoverable is-fullwidth'>
 					<tbody>
 						<tr>
-							<td>Data przyłączenia</td>
+							<td>Admission date</td>
 							<td>{admission_date}</td>
 						</tr>
 						<tr>
-							<td>Stolica</td>
+							<td>Capital city</td>
 							<td>{capital_city}</td>
 						</tr>
 						<tr>
-							<td>Kod</td>
+							<td>Code</td>
 							<td>{code}</td>
 						</tr>
 						<tr>
-							<td>Mieszkańcy</td>
+							<td>Population</td>
 							<td>{population}</td>
 						</tr>
 						<tr>
-							<td>Ranking mieszkańców</td>
+							<td>Population rank</td>
 							<td>{population_rank}</td>
 						</tr>
 					</tbody>
