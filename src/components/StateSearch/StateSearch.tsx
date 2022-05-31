@@ -9,7 +9,7 @@ export const StateSearch = () => {
 	const { query, onSetQuery, list, onPick } = useContext(SearchStateContext);
 	const [selected, setSelected] = useState(0);
 	const [focused, setFocused] = useState(false);
-	const wrapperRef = useRef(null);
+	const wrapperRef = useRef<HTMLDivElement | null>(null);
 
 	const _onPick = (item: any) => {
 		onPick(item);

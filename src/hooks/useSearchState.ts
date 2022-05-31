@@ -9,7 +9,7 @@ export const SearchStateContext = createContext(null);
 export const useSearchState = () => {
 	const [query, setQuery] = useState("");
 	const [resultsList, setResultsList] = useState<State[]>([]);
-	const [pickedStateCode, setPickedStateCode] = useState(null);
+	const [pickedStateCode, setPickedStateCode] = useState<string | null>(null);
 	const [searchKey, setSearchKey] = useState("state");
 	const [dataType, setDataType] = useState("table");
 	const currentState = getState(pickedStateCode, states);
@@ -31,7 +31,7 @@ export const useSearchState = () => {
 		query,
 		onSetQuery: setQuery,
 		list: resultsList,
-		onPick: ({ code }: any) => setPickedStateCode(code),
+		onPick: ({ code }: { code: string }) => setPickedStateCode(code),
 		currentState,
 		dataType,
 		setSearchKey,

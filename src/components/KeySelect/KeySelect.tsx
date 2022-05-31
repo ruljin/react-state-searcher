@@ -8,9 +8,9 @@ export const KeySelect = () => {
 
 	return (
 		<Select label="Search by" onSelect={setSearchKey} value={searchKey}>
-			{SEARCH_KEYS.map((key) => (
-				<option key={key.value} value={key.value}>
-					{key.option}
+			{SEARCH_KEYS.map(({ value, option }) => (
+				<option key={value} value={value}>
+					{option}
 				</option>
 			))}
 		</Select>

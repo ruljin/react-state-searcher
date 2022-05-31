@@ -16,6 +16,6 @@ export const searchStates = (
 	);
 };
 
-export const getState = (codeToFind: string, states: State[]) => {
+export const getState = (codeToFind: string | null, states: State[]) => {
 	return states.find(({ code }) => code === codeToFind);
 };

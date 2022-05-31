@@ -1,10 +1,15 @@
-import { useEffect } from "react";
+import { MutableRefObject, useEffect } from "react";
 
-export function useOnClickOrFocusOutside(ref: any, handler: any) {
+export function useOnClickOrFocusOutside(
+	ref: MutableRefObject<HTMLDivElement | null>,
+	handler: () => void
+) {
 	useEffect(() => {
-		const listener = (event: any) => {
-			if (ref.current && !ref.current.contains(event.target)) {
-				handler(event);
+		const listener = (event: MouseEvent | FocusEvent) => {
+			const { target } = event;
+
+			if (ref.current && !ref.current.contains(target as HTMLElement)) {
+				handler();
 			}
 		};
 
@@ -15,5 +20,5 @@ export function useOnClickOrFocusOutside(ref: any, handler: any) {
 			document.removeEventListener("click", listener, true);
 			document.removeEventListener("focus", listener, true);
 		};
-	}, [ref, handler]);
+	}, [handler]);
 }
