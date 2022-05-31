@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useRef, useContext, KeyboardEvent } from "react";
 import classnames from "classnames";
 import { useOnClickOrFocusOutside } from "../../hooks/useOnClickOrFocusOutside";
 import { SearchStateContext } from "../../hooks/useSearchState";
@@ -16,7 +16,7 @@ export const StateSearch = () => {
 		setFocused(false);
 	};
 
-	const onKeyUp = (event: any) => {
+	const onKeyUp = (event: KeyboardEvent) => {
 		const { key } = event;
 		setFocused(true);
 
