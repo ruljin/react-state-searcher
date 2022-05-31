@@ -1,17 +1,21 @@
-export const searchStates = (query: any, searchKey: any, states: any) => {
+import type { State } from "../models/State";
+
+export const searchStates = (
+	query: string,
+	searchKey: string,
+	states: State[]
+) => {
 	if (!query) {
 		return [];
 	}
 
 	const lowerCaseQuery = query.toLowerCase();
 
-	return states
-		.filter((state: any) => {
-			return state[searchKey].toLowerCase().startsWith(lowerCaseQuery);
-		})
-		.slice(0, 6);
+	return states.filter((state) =>
+		state[(searchKey = "state")].toLowerCase().startsWith(lowerCaseQuery)
+	);
 };
 
-export const getState = (codeToFind: any, states: any) => {
-	return states.find(({ code }: any) => code === codeToFind);
+export const getState = (codeToFind: string, states: State[]) => {
+	return states.find(({ code }) => code === codeToFind);
 };
