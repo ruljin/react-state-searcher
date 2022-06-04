@@ -1,10 +1,6 @@
-import {
-	DataTypeSelect,
-	KeySelect,
-	StatePage,
-	StateSearch,
-} from "../components";
-import { useSearchState, SearchStateContext } from "../hooks/useSearchState";
+import { DataTypeSelect, KeySelect, StateSearch } from "./components";
+import { State } from "./State";
+import { useSearchState, SearchStateContext } from "./hooks/useSearchState";
 import styles from "./App.module.css";
 
 const App = () => {
@@ -17,7 +13,7 @@ const App = () => {
 				<KeySelect />
 				<StateSearch />
 				<DataTypeSelect />
-				{currentState && <StatePage />}
+				{currentState && <State />}
 			</SearchStateContext.Provider>
 		</div>
 	);
