@@ -1,5 +1,5 @@
 import { DataTypeSelect, KeySelect, StateSearch } from "./components";
-import { State } from "./State";
+import { State } from "./state";
 import { useSearchState, SearchStateContext } from "./hooks/useSearchState";
 import styles from "./App.module.css";
 
