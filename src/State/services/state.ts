@@ -1,6 +1,6 @@
 import type { State } from "../models/State";
 
-export const searchStates = (
+export const getStates = (
 	query: string,
 	searchKey: string,
 	states: State[]

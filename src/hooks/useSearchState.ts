@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext } from "react";
-import { searchStates, getState } from "../services/state";
-import states from "../services/states.json";
+import { getStates, getState } from "../state/services/state";
+import states from "../state/services/states.json";
 
 import type { State } from "../models/State";
 
@@ -15,7 +15,7 @@ export const useSearchState = () => {
 	const currentState = getState(pickedStateCode, states);
 
 	useEffect(() => {
-		setResultsList(searchStates(query, searchKey, states));
+		setResultsList(getStates(query, searchKey, states));
 		if (currentState && currentState.state !== query) {
 			setPickedStateCode(null);
 		}
