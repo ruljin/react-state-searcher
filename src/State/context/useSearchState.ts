@@ -1,8 +1,8 @@
 import { useState, useEffect, createContext } from "react";
-import { getStates, getState } from "../state/services/state";
-import states from "../state/services/states.json";
+import { getStates, getState } from "../services/state";
+import states from "../services/states.json";
 
-import type { State } from "../state/models/State";
+import type { State } from "../models/State";
 
 export const SearchStateContext = createContext(null);
 

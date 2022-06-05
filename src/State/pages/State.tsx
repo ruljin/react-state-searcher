@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { SearchStateContext } from "../../hooks/useSearchState";
+import { SearchStateContext } from "../context/useSearchState";
 import styles from "./State.module.css";
 
 export const State = () => {

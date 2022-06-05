@@ -1,6 +1,11 @@
-import { DataTypeSelect, KeySelect, StateSearch } from "./components";
+import { DataTypeSelect } from "./state/components/DataTypeSelect/DataTypeSelect";
+import { KeySelect } from "./state/components/KeySelect/KeySelect";
+import { StateSearch } from "./state/components/StateSearch/StateSearch";
 import { State } from "./state";
-import { useSearchState, SearchStateContext } from "./hooks/useSearchState";
+import {
+	useSearchState,
+	SearchStateContext,
+} from "./state/context/useSearchState";
 import styles from "./App.module.css";
 
 const App = () => {

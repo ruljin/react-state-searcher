@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useContext, KeyboardEvent } from "react";
 import classnames from "classnames";
 import { useOnClickOrFocusOutside } from "../../../hooks/useOnClickOrFocusOutside";
-import { SearchStateContext } from "../../../hooks/useSearchState";
+import { SearchStateContext } from "../../context/useSearchState";
 import { getSelectedItemOnKey } from "../../../utils/getSelectedItemOnKey";
 import styles from "./StateSearch.module.css";
 

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { SearchStateContext } from "../../../hooks/useSearchState";
+import { SearchStateContext } from "../../context/useSearchState";
 import { Select } from "../../../components/Select/Select";
 import { DATA_TYPES } from "../../constants/data-type";
 
