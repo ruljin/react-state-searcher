@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { SearchStateContext } from "../../hooks/useSearchState";
 import { Select } from "..";
-import { DATA_TYPES } from "../../constants/options";
+import { DATA_TYPES } from "../../state/constants/data-type";
 
 export const DataTypeSelect = () => {
 	const { setDataType, dataType } = useContext(SearchStateContext);

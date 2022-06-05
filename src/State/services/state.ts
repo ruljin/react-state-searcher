@@ -1,4 +1,4 @@
-import type { State } from "../../models/State";
+import type { State } from "../models/State";
 
 export const getStates = (
 	query: string,

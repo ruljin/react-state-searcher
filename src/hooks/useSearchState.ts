@@ -2,7 +2,7 @@ import { useState, useEffect, createContext } from "react";
 import { getStates, getState } from "../state/services/state";
 import states from "../state/services/states.json";
 
-import type { State } from "../models/State";
+import type { State } from "../state/models/State";
 
 export const SearchStateContext = createContext(null);
 
