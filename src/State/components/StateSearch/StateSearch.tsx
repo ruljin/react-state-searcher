@@ -1,22 +1,22 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useRef, useContext, KeyboardEvent } from "react";
 import classnames from "classnames";
-import { useOnClickOrFocusOutside } from "../../hooks/useOnClickOrFocusOutside";
-import { SearchStateContext } from "../../hooks/useSearchState";
-import { getSelectedItemOnKey } from "../../utils/getSelectedItemOnKey";
+import { useOnClickOrFocusOutside } from "../../../hooks/useOnClickOrFocusOutside";
+import { SearchStateContext } from "../../context/useSearchState";
+import { getSelectedItemOnKey } from "../../../utils/getSelectedItemOnKey";
 import styles from "./StateSearch.module.css";
 
 export const StateSearch = () => {
 	const { query, onSetQuery, list, onPick } = useContext(SearchStateContext);
 	const [selected, setSelected] = useState(0);
 	const [focused, setFocused] = useState(false);
-	const wrapperRef = useRef(null);
+	const wrapperRef = useRef<HTMLDivElement | null>(null);
 
 	const _onPick = (item: any) => {
 		onPick(item);
 		setFocused(false);
 	};
 
-	const onKeyUp = (event: any) => {
+	const onKeyUp = (event: KeyboardEvent) => {
 		const { key } = event;
 		setFocused(true);
 

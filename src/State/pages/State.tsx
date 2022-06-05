@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { SearchStateContext } from "../../hooks/useSearchState";
-import styles from "./StatePage.module.css";
+import { SearchStateContext } from "../context/useSearchState";
+import styles from "./State.module.css";
 
-export const StatePage = () => {
+export const State = () => {
 	const {
 		currentState: {
 			state,

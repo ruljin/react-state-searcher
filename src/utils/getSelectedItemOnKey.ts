@@ -1,10 +1,11 @@
 export const getSelectedItemOnKey = (
-	key: any,
-	current: any,
-	listLength: any
+	key: string,
+	current: number,
+	listLength: number
 ) => {
 	if (key === "ArrowUp") {
 		const newSelected = current - 1;
+
 		if (newSelected < 0) {
 			return current;
 		}
@@ -14,11 +15,12 @@ export const getSelectedItemOnKey = (
 
 	if (key === "ArrowDown") {
 		const newSelected = current + 1;
+
 		if (newSelected >= listLength) {
 			return current;
 		}
 
-		return current + 1;
+		return newSelected;
 	}
 
 	return current;

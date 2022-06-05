@@ -30,6 +30,8 @@ The main page contains a search engine for the United States of America with:
 
 ## Technologies
 
+Application has been moved from JS to TS on 30.05.2022.
+
 - HTML,
 - CSS,
 - JS,
