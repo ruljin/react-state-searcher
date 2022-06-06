@@ -1,6 +1,5 @@
 import type { State } from "../models/State";
-
-type SearchKeyValue = "state" | "code" | "capital_city";
+import type { SearchKeyValue } from "../models/SearchKey";
 
 export const getStates = (
 	query: string,
