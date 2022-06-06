@@ -4,6 +4,7 @@ import { useOnClickOrFocusOutside } from "../../../hooks/useOnClickOrFocusOutsid
 import { useSearchStateContext } from "../../context/SearchState";
 import { getSelectedItemOnKey } from "../../../utils/getSelectedItemOnKey";
 import styles from "./StateSearch.module.css";
+import type { State } from "../../models/State";
 
 export const StateSearch = () => {
 	const { query, onSetQuery, list, onPick } = useSearchStateContext();
@@ -57,7 +58,7 @@ export const StateSearch = () => {
 					{focused && list.length > 0 && (
 						<div className={`${styles.fullWidth} dropdown-menu`}>
 							<div className="dropdown-content">
-								{list.map((item: any, index: any) => {
+								{list.map((item: State, index: number) => {
 									const { state } = item;
 
 									return (
