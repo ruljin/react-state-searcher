@@ -12,7 +12,7 @@ export const StateSearch = () => {
 	const [focused, setFocused] = useState(false);
 	const wrapperRef = useRef<HTMLDivElement | null>(null);
 
-	const _onPick = (item: any) => {
+	const _onPick = (item: State) => {
 		onPick(item);
 		setFocused(false);
 	};
