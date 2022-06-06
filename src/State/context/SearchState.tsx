@@ -6,11 +6,12 @@ import {
 	useContext,
 } from "react";
 import { useSearchState } from "../hooks/useSearchState";
+import { SearchKeyValue } from "../models/SearchKey";
 import type { State } from "../models/State";
 
 const INITIAL_SEARCH_STATE_VALUE = {
 	list: [],
-	searchKey: "state",
+	searchKey: "state" as SearchKeyValue,
 	setSearchKey: () => {},
 	onPick: ({ code }: { code: string }) => {},
 	query: "",
@@ -22,8 +23,8 @@ const INITIAL_SEARCH_STATE_VALUE = {
 
 type SearchStateContextProps = {
 	list: State[];
-	searchKey: string;
-	setSearchKey: Dispatch<SetStateAction<string>>;
+	searchKey: SearchKeyValue;
+	setSearchKey: Dispatch<SetStateAction<SearchKeyValue>>;
 	onPick: ({ code }: { code: string }) => void;
 	query: string;
 	onSetQuery: Dispatch<SetStateAction<string>>;

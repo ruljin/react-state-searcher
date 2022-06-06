@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import styles from "./Select.module.css";
 
 type SelectProps = {
 	label: string;
@@ -12,7 +13,10 @@ export const Select = ({ label, value, onSelect, children }: SelectProps) => (
 		<label className="label">{label}</label>
 		<div className="control">
 			<div className="select">
-				<select value={value} onChange={({ target }) => onSelect(target.value)}>
+				<select
+					value={value}
+					onChange={({ target }) => onSelect(target.value)}
+					className={styles.option}>
 					{children}
 				</select>
 			</div>

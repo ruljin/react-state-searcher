@@ -1,8 +1,10 @@
 import type { State } from "../models/State";
 
+type SearchKeyValue = "state" | "code" | "capital_city";
+
 export const getStates = (
 	query: string,
-	searchKey: string,
+	searchKey: SearchKeyValue,
 	states: State[]
 ) => {
 	if (!query) {
@@ -12,7 +14,7 @@ export const getStates = (
 	const lowerCaseQuery = query.toLowerCase();
 
 	return states.filter((state) =>
-		state[(searchKey = "state")].toLowerCase().startsWith(lowerCaseQuery)
+		state[searchKey].toLowerCase().startsWith(lowerCaseQuery)
 	);
 };
 
