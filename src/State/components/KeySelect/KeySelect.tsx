@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import { SearchStateContext } from "../../context/useSearchState";
+import { useSearchStateContext } from "../../context/SearchState";
 import { Select } from "../../../components/Select/Select";
 import { SEARCH_KEYS } from "../../constants/search-keys";
 
 export const KeySelect = () => {
-	const { setSearchKey, searchKey } = useContext(SearchStateContext);
+	const { setSearchKey, searchKey } = useSearchStateContext();
 
 	return (
 		<Select label="Search by" onSelect={setSearchKey} value={searchKey}>

@@ -3,25 +3,19 @@ import {
 	DataTypeSelect,
 	KeySelect,
 	StateSearch,
-	useSearchState,
-	SearchStateContext,
-} from "./state";
+	SearchStateContextProvider,
+} from "./State";
 import styles from "./App.module.css";
 
-const App = () => {
-	const searchState = useSearchState();
-	const { currentState } = searchState;
-
-	return (
-		<div className={styles.app}>
-			<SearchStateContext.Provider value={searchState}>
-				<KeySelect />
-				<StateSearch />
-				<DataTypeSelect />
-				{currentState && <State />}
-			</SearchStateContext.Provider>
-		</div>
-	);
-};
+const App = () => (
+	<div className={styles.app}>
+		<SearchStateContextProvider>
+			<KeySelect />
+			<StateSearch />
+			<DataTypeSelect />
+			<State />
+		</SearchStateContextProvider>
+	</div>
+);
 
 export default App;
