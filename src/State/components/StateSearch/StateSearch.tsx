@@ -1,12 +1,12 @@
-import { useState, useEffect, useRef, useContext, KeyboardEvent } from "react";
+import { useState, useEffect, useRef, KeyboardEvent } from "react";
 import classnames from "classnames";
 import { useOnClickOrFocusOutside } from "../../../hooks/useOnClickOrFocusOutside";
-import { SearchStateContext } from "../../context/useSearchState";
+import { useSearchStateContext } from "../../context/SearchState";
 import { getSelectedItemOnKey } from "../../../utils/getSelectedItemOnKey";
 import styles from "./StateSearch.module.css";
 
 export const StateSearch = () => {
-	const { query, onSetQuery, list, onPick } = useContext(SearchStateContext);
+	const { query, onSetQuery, list, onPick } = useSearchStateContext();
 	const [selected, setSelected] = useState(0);
 	const [focused, setFocused] = useState(false);
 	const wrapperRef = useRef<HTMLDivElement | null>(null);

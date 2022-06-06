@@ -1,22 +1,24 @@
-import { useContext } from "react";
-import { SearchStateContext } from "../context/useSearchState";
+import { useSearchStateContext } from "../context/SearchState";
 import styles from "./State.module.css";
 
 export const State = () => {
+	const { currentState, dataType } = useSearchStateContext();
+
+	if (!currentState) {
+		return null;
+	}
+
 	const {
-		currentState: {
-			state,
-			admission_date,
-			capital_city,
-			code,
-			population,
-			population_rank,
-			map_image_url,
-			state_flag_url,
-			state_seal_url,
-		},
-		dataType,
-	} = useContext(SearchStateContext);
+		state,
+		admission_date,
+		capital_city,
+		code,
+		population,
+		population_rank,
+		map_image_url,
+		state_flag_url,
+		state_seal_url,
+	} = currentState;
 
 	return (
 		<div className="page__state content">

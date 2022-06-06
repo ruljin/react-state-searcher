@@ -1,23 +1,21 @@
-import { useState, useEffect, createContext } from "react";
+import { useEffect, useState } from "react";
 import { getStates, getState } from "../services/state";
 import states from "../services/states.json";
-
 import type { State } from "../models/State";
 
-export const SearchStateContext = createContext(null);
-
 export const useSearchState = () => {
-	const [query, setQuery] = useState("");
 	const [resultsList, setResultsList] = useState<State[]>([]);
-	const [pickedStateCode, setPickedStateCode] = useState<string | null>(null);
 	const [searchKey, setSearchKey] = useState("state");
+	const [stateCode, setStateCode] = useState<string | null>(null);
+	const [query, setQuery] = useState("");
 	const [dataType, setDataType] = useState("table");
-	const currentState = getState(pickedStateCode, states);
+	const currentState = getState(stateCode, states);
 
 	useEffect(() => {
 		setResultsList(getStates(query, searchKey, states));
-		if (currentState && currentState.state !== query) {
-			setPickedStateCode(null);
+
+		if (currentState?.state !== query) {
+			setStateCode(null);
 		}
 	}, [query]);
 
@@ -25,16 +23,17 @@ export const useSearchState = () => {
 		if (currentState) {
 			setQuery(currentState.state);
 		}
-	}, [pickedStateCode]);
+	}, [stateCode]);
 
 	return {
+		list: resultsList,
+		searchKey,
+		setSearchKey,
+		onPick: ({ code }: { code: string }) => setStateCode(code),
 		query,
 		onSetQuery: setQuery,
-		list: resultsList,
-		onPick: ({ code }: { code: string }) => setPickedStateCode(code),
-		currentState,
 		dataType,
-		setSearchKey,
 		setDataType,
+		currentState,
 	};
 };
