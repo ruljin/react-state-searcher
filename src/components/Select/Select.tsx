@@ -4,7 +4,7 @@ import styles from "./Select.module.css";
 type SelectProps = {
 	label: string;
 	value: string;
-	onSelect: (value: string) => void;
+	onSelect: (value: any) => void;
 	children: ReactNode;
 };
 
