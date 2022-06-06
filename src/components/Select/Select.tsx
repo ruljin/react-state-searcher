@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 
 type SelectProps = {
-	label: any;
-	value: any;
-	onSelect: any;
+	label: string;
+	value: string;
+	onSelect: (value: string) => void;
 	children: ReactNode;
 };
 
