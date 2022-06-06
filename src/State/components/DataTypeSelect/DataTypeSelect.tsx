@@ -7,9 +7,9 @@ export const DataTypeSelect = () => {
 
 	return (
 		<Select label="Show data" onSelect={setDataType} value={dataType}>
-			{DATA_TYPES.map(({ value, option }) => (
+			{DATA_TYPES.map(({ value }) => (
 				<option key={value} value={value}>
-					{option}
+					{value}
 				</option>
 			))}
 		</Select>

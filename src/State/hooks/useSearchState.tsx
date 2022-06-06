@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { getStates, getState } from "../services/state";
 import states from "../services/states.json";
 import type { State } from "../models/State";
+import type { SearchKeyValue } from "../models/SearchKey";
 
 export const useSearchState = () => {
 	const [resultsList, setResultsList] = useState<State[]>([]);
-	const [searchKey, setSearchKey] = useState("state");
+	const [searchKey, setSearchKey] = useState<SearchKeyValue>("state");
 	const [stateCode, setStateCode] = useState<string | null>(null);
 	const [query, setQuery] = useState("");
 	const [dataType, setDataType] = useState("table");

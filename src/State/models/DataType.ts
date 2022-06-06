@@ -8,5 +8,4 @@ export type DataValue = Table | Symbols | Map;
 
 export type DataType = {
 	value: DataValue;
-	option: string;
 };
